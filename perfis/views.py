@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from perfis.models import Perfil
 
 def index(request):
@@ -13,4 +13,10 @@ def exibir(request, perfil):
 
 
 def convidar(request, perfil):
-    pass
+    perfil_convidado = Perfil.objects.get(id=perfil)
+    perfil_logado = get_perfilLogado(request)
+    perfil_logado.convidar(perfil_convidado)
+    return redirect('index')
+
+def get_perfilLogado(request):
+    return Perfil.objects.get(id=1)
