@@ -4,5 +4,16 @@
   </head>
   <body>
     <h1>Bem-vindo</h1>
+    {% if perfis %}
+    <ul>
+      {% for perfil in perfis %}
+        <li>
+          <a href="{% url 'perfil' perfil.id %}">{{perfil.nome | upper}} / {{perfil.email}}</a>
+        </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+      <p>Nenhum perfil encontrado</p>
+    {% endif %}
   </body>
 </html>
